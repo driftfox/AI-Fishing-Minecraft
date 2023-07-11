@@ -6,9 +6,13 @@ import threading
 import time
 import keyboard
 
-# Load the bobber image
-bobber_image = cv2.imread('bobber.png')
+# Custom variables
+threshold_image_match = 0.60 # Adjust the threshold to control detection sensitivity
+# bobber_image_filename = 'bobber.png'
+bobber_image_filename = 'bobber_bedrock.png'
 
+# Load the bobber image
+bobber_image = cv2.imread(bobber_image_filename)
 # Get the screen size of the primary monitor
 screen_info = screeninfo.get_monitors()[0]
 screen_width = screen_info.width
@@ -39,8 +43,7 @@ def capture_screen():
 
             # Perform template matching to detect the bobber
             result = cv2.matchTemplate(screen, bobber_image, cv2.TM_CCOEFF_NORMED)
-            threshold = 0.45  # Adjust the threshold to control detection sensitivity
-            locations = np.where(result >= threshold)
+            locations = np.where(result >= threshold_image_match)
             locations = list(zip(*locations[::-1]))
 
             if locations:

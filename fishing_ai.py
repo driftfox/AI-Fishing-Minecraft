@@ -86,6 +86,9 @@ screen_thread.start()
 toggle_thread = threading.Thread(target=toggle_tracking)
 toggle_thread.start()
 
+# Notify that the application is running
+print('AI Fisher is now active. Press u on the keyboard to toggle on/off');
+
 # Wait for the screen capture thread to finish
 screen_thread.join()
 toggle_thread.join()

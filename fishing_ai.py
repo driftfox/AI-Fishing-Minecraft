@@ -8,6 +8,7 @@ import keyboard
 
 # Custom variables
 threshold_image_match = 0.60 # Adjust the threshold to control detection sensitivity
+time_between_casts = 1 # Time between casts, in seconds
 # bobber_image_filename = 'bobber.png'
 bobber_image_filename = 'bobber_bedrock.png'
 
@@ -60,9 +61,7 @@ def capture_screen():
                 if time.time() - last_detection_time > 0.1:
                     # Perform right-clicks when the object is not detected for more than 0.1 seconds
                     pyautogui.rightClick()
-                    time.sleep(1)
-                    pyautogui.rightClick()
-                    time.sleep(2)
+                    time.sleep(time_between_casts)
 
 
             # Display the modified screen image
